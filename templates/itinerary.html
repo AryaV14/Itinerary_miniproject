@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Itinerary</title>
+</head>
+<body>
+    <h1>Generated Itinerary</h1>
+    {% set prev_day = None %}
+    {% for step in itinerary %}
+        {% if step.day != prev_day %}
+            <h3>Day {{ step.day }}</h3>
+            {% set prev_day = step.day %}
+        {% endif %}
+        <p>{{ step.time }}: {{ step.place_from }}</p>
+        {% if 'time_spent' in step %}
+            <p>Time Spent: {{ step.time_spent }} hours</p>
+        {% endif %}
+        {% if 'place_to' in step %}
+            <p>From {{ step.place_from }} to {{ step.place_to }}</p>
+        {% endif %}
+        <hr>
+    {% endfor %}
+</body>
+</html>

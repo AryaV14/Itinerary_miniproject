@@ -52,7 +52,7 @@ def generate_itinerary(start_location, start_time, max_hours_per_day, distance_m
             current_location = next_place
             remaining_places.remove(next_place)
         else:
-            # Move to the next day
+            
             current_time = current_time.replace(hour=9, minute=0) + timedelta(days=1)
     
     return itinerary
@@ -80,7 +80,7 @@ def print_itinerary(itinerary):
                     "time": datetime.strptime(time, time_format).strftime('%I:%M %p'),
                     "place_from": place_from,
                     "place_to": place_to
-                    # "time_spent": time
+                    
                 })
             else:
                 formatted_itinerary.append({
@@ -90,21 +90,13 @@ def print_itinerary(itinerary):
                     "time_spent": place_to
                 })
 
-        # current_time = datetime.strptime(time, "%I:%M %p")
-
-        # if last_time is not None and current_time < last_time:
-        #     day += 1
-
-        # last_time = current_time
-
-
     return formatted_itinerary
 
 @app.route('/')
 def index():
-    start_location = "Varkala"  # Starting location
-    start_time = datetime.strptime("09:00 AM", "%I:%M %p")  # Starting time
-    max_hours_per_day = 10  # Max hours in a day
+    start_location = "Varkala"  
+    start_time = datetime.strptime("09:00 AM", "%I:%M %p")  
+    max_hours_per_day = 10 
 
     distance_matrix_file = "distance_matrix.csv"
     time_spent_file = "time_spent.csv"
